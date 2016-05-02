@@ -9,7 +9,7 @@
             renderingOrder="3000"
             scale="0.6 0.6 1"
             texture="@drawable/character_saiaku1"
-            width="1.14" />
+            width="1.14"/>
 
         <object
             height="2.56"
@@ -18,7 +18,7 @@
             renderingOrder="3000"
             scale="0.6 0.6 1"
             texture="@drawable/character_saiaku2"
-            width="0.99" />
+            width="0.99"/>
 
         <object
             height="2.56"
@@ -27,7 +27,7 @@
             renderingOrder="3000"
             scale="0.6 0.6 1"
             texture="@drawable/character_saiaku3"
-            width="1.22" />
+            width="1.22"/>
 
         <object
             height="2.56"
@@ -36,7 +36,7 @@
             renderingOrder="3000"
             scale="0.4 0.4 1"
             texture="@drawable/character_omake1"
-            width="0.9" />
+            width="0.9"/>
 
         <object
             height="2.56"
@@ -45,7 +45,7 @@
             renderingOrder="3000"
             scale="0.6 0.6 1"
             texture="@drawable/character_omake2"
-            width="0.95" />
+            width="0.95"/>
 
         <object
             height="2.56"
@@ -54,7 +54,7 @@
             renderingOrder="3000"
             scale="0.6 0.6 1"
             texture="@drawable/character_omake3"
-            width="0.71" />
+            width="0.71"/>
 
         <object
             height="2.56"
@@ -62,7 +62,7 @@
             position="1.972222 -0.705539 9.573546"
             renderingOrder="3000"
             texture="@drawable/character_dr1"
-            width="0.85" />
+            width="0.85"/>
 
         <object
             height="2.56"
@@ -70,7 +70,7 @@
             position="-4.300821 -0.339157 8.799329"
             renderingOrder="3000"
             texture="@drawable/character_dr2"
-            width="1.86" />
+            width="1.86"/>
 
         <object
             height="2.56"
@@ -79,14 +79,89 @@
             renderingOrder="3000"
             scale="0.7 0.7 1"
             texture="@drawable/character_dr3"
-            width="0.92" />
+            width="0.92"/>
 
+    </object>
+
+    <object id="@+id/count_container">
+        <object z="-7">
+            <object
+                height="1.28"
+                id="@+id/count_1"
+                renderingOrder="3000"
+                texture="@drawable/count_1"
+                visible="false"
+                width="1.28"/>
+            <object
+                height="1.28"
+                id="@+id/count_2"
+                renderingOrder="3000"
+                texture="@drawable/count_2"
+                visible="false"
+                width="1.28"/>
+            <object
+                height="1.28"
+                id="@+id/count_3"
+                renderingOrder="3000"
+                texture="@drawable/count_3"
+                visible="false"
+                width="1.28"/>
+            <object
+                height="1.28"
+                id="@+id/count_4"
+                renderingOrder="3000"
+                texture="@drawable/count_4"
+                visible="false"
+                width="1.28"/>
+            <object
+                height="1.28"
+                id="@+id/count_5"
+                renderingOrder="3000"
+                texture="@drawable/count_5"
+                visible="false"
+                width="1.28"/>
+            <object
+                height="1.28"
+                id="@+id/count_6"
+                renderingOrder="3000"
+                texture="@drawable/count_6"
+                visible="false"
+                width="1.28"/>
+            <object
+                height="1.28"
+                id="@+id/count_7"
+                renderingOrder="3000"
+                texture="@drawable/count_7"
+                visible="false"
+                width="1.28"/>
+            <object
+                height="1.28"
+                id="@+id/count_8"
+                renderingOrder="3000"
+                texture="@drawable/count_8"
+                visible="false"
+                width="1.28"/>
+            <object
+                height="1.28"
+                id="@+id/count_9"
+                renderingOrder="3000"
+                texture="@drawable/count_9"
+                visible="false"
+                width="1.28"/>
+            <object
+                height="1.28"
+                id="@+id/count_10"
+                renderingOrder="3000"
+                texture="@drawable/count_10"
+                visible="false"
+                width="1.28"/>
+        </object>
     </object>
 
     <sphere
         renderingOrder="1000"
         rotation="-140 0 1 0"
         scale="10 10 -10"
-        texture="@drawable/stage1_background" />
+        texture="@drawable/stage1_background"/>
 
 </scene>
