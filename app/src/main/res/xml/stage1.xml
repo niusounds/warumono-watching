@@ -1,0 +1,92 @@
+<scene class="com.niusounds.hazurevr.scene.StageScene">
+
+    <object id="@+id/characters">
+
+        <object
+            height="2.56"
+            id="@+id/character_saiaku1"
+            position="8.887657 -0.772053 4.292196"
+            renderingOrder="3000"
+            scale="0.6 0.6 1"
+            texture="@drawable/character_saiaku1"
+            width="1.14" />
+
+        <object
+            height="2.56"
+            id="@+id/character_saiaku2"
+            position="2.263743 3.255174 9.071222"
+            renderingOrder="3000"
+            scale="0.6 0.6 1"
+            texture="@drawable/character_saiaku2"
+            width="0.99" />
+
+        <object
+            height="2.56"
+            id="@+id/character_saiaku3"
+            position="8.859234 3.169895 3.078260"
+            renderingOrder="3000"
+            scale="0.6 0.6 1"
+            texture="@drawable/character_saiaku3"
+            width="1.22" />
+
+        <object
+            height="2.56"
+            id="@+id/character_omake1"
+            position="-5.913795 -0.189160 -7.937337"
+            renderingOrder="3000"
+            scale="0.4 0.4 1"
+            texture="@drawable/character_omake1"
+            width="0.9" />
+
+        <object
+            height="2.56"
+            id="@+id/character_omake2"
+            position="-9.891729 -0.149684 -0.376213"
+            renderingOrder="3000"
+            scale="0.6 0.6 1"
+            texture="@drawable/character_omake2"
+            width="0.95" />
+
+        <object
+            height="2.56"
+            id="@+id/character_omake3"
+            position="-9.434588 0.079505 2.998800"
+            renderingOrder="3000"
+            scale="0.6 0.6 1"
+            texture="@drawable/character_omake3"
+            width="0.71" />
+
+        <object
+            height="2.56"
+            id="@+id/character_dr1"
+            position="1.972222 -0.705539 9.573546"
+            renderingOrder="3000"
+            texture="@drawable/character_dr1"
+            width="0.85" />
+
+        <object
+            height="2.56"
+            id="@+id/character_dr2"
+            position="-4.300821 -0.339157 8.799329"
+            renderingOrder="3000"
+            texture="@drawable/character_dr2"
+            width="1.86" />
+
+        <object
+            height="2.56"
+            id="@+id/character_dr3"
+            position="-5.513777 6.136628 5.289660"
+            renderingOrder="3000"
+            scale="0.7 0.7 1"
+            texture="@drawable/character_dr3"
+            width="0.92" />
+
+    </object>
+
+    <sphere
+        renderingOrder="1000"
+        rotation="-140 0 1 0"
+        scale="10 10 -10"
+        texture="@drawable/stage1_background" />
+
+</scene>
