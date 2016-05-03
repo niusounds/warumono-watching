@@ -144,14 +144,19 @@ public class App extends MeganekkoApp {
         deleteStageScene();
     }
 
+    /**
+     * 視線カーソルを表示する
+     */
     private void showGazeCursor() {
         ((MeganekkoActivity) getContext()).showGazeCursor();
     }
 
+    /**
+     * 視線カーソルを非表示にする
+     */
     private void hideGazeCursor() {
         ((MeganekkoActivity) getContext()).hideGazeCursor();
     }
-
 
     /**
      * ステージシーンのリソースを開放する
