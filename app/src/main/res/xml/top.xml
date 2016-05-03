@@ -4,7 +4,7 @@
         height="5.391"
         texture="@drawable/top_front"
         width="8.901"
-        z="-5.0">
+        z="-7.0">
 
         <object
             id="@+id/top_start_button"
@@ -39,14 +39,14 @@
         rotation="-90 0 1 0"
         texture="@drawable/top_right"
         width="8.901"
-        x="5.0" />
+        x="7.0" />
 
     <object
         height="5.391"
         rotation="90 0 1 0"
         texture="@drawable/top_left"
         width="8.901"
-        x="-5.0" />
+        x="-7.0" />
 
     <object
         height="5.391"
