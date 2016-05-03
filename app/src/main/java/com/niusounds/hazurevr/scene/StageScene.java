@@ -26,20 +26,22 @@ import ovr.JoyButton;
 public class StageScene extends Scene {
     private static final String TAG = StageScene.class.getName();
     private static final Random RANDOM = new Random();
-    private static final int TIME = 11;   // 制限時間（秒）
+    private static final int TIME = 30;   // 制限時間（秒）
     private List<SceneObject> characters; // キャラクター
     private SceneObject seeingCharacter;  // 視線を合わせているキャラクター
     private double lookStartTime;         // キャラクターを見つめ始めた時間
     private int restTime = TIME;          // 残り時間
     private ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor(); // 残り時間を表示するための1秒毎のタスクを管理する
     private Future<?> scheduledFuture;                                                               // 残り時間を表示するタスクをキャンセルするためのFuture
+    private SceneObject countContainer;
 
     @Override
     public void onResume() {
         super.onResume();
         characters = findObjectById(R.id.characters).getChildren();
+        countContainer = findObjectById(R.id.count_container);
 
-//        randomChooseCharacter();
+        randomChooseCharacter();
 
         // 全てのキャラクターをカメラの方に向ける
         for (SceneObject character : characters) {
@@ -116,8 +118,7 @@ public class StageScene extends Scene {
      */
     private void showAndFadeOutCount(int id) {
         getApp().runOnGlThread(() -> {
-            Quaternionf viewOrientation = getViewOrientation();
-            findObjectById(R.id.count_container).rotation(viewOrientation);
+            recenterCount();
 
             final SceneObject obj = findObjectById(id);
             obj.setVisible(true);
@@ -130,21 +131,34 @@ public class StageScene extends Scene {
         });
     }
 
+    private void recenterCount() {
+        Quaternionf viewOrientation = getViewOrientation();
+        countContainer.rotation(viewOrientation);
+    }
+
     @Override
     public void delete() {
+        cancelRestTimeCount();
+        shutdownExecutor();
+        super.delete();
+    }
+
+    /**
+     * 残り時間のカウントダウンを停止する。2回以上呼び出しても何も起こらない。
+     */
+    private void cancelRestTimeCount() {
         if (scheduledFuture != null) {
-            scheduledFuture.cancel(true);
+            scheduledFuture.cancel(false);
             scheduledFuture = null;
         }
+    }
 
+    private void shutdownExecutor() {
         if (executorService != null) {
             executorService.shutdown();
             executorService = null;
         }
-
-        super.delete();
     }
-
 
     /**
      * 各キャラクターの3箇所の配置のうち、いずれか1個のみ表示する
@@ -214,7 +228,15 @@ public class StageScene extends Scene {
      */
     private void checkClear() {
         if (allCharactersFound()) {
-            // TODO クリア表示
+            // クリア表示
+            recenterCount();
+            findObjectById(R.id.clear).setVisible(true);
+
+            cancelRestTimeCount();
+
+            // イベント通知
+            App app = (App) getApp();
+            app.runOnGlThread(app::onClearStage);
         }
     }
 

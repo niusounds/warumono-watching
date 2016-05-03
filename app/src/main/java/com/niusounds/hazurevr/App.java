@@ -4,22 +4,20 @@ import com.eje_c.meganekko.Meganekko;
 import com.eje_c.meganekko.MeganekkoApp;
 import com.eje_c.meganekko.Scene;
 import com.eje_c.meganekko.gearvr.MeganekkoActivity;
-import com.niusounds.hazurevr.scene.FailureScene;
 import com.niusounds.hazurevr.scene.PreStageScene;
 import com.niusounds.hazurevr.scene.StageScene;
 
 public class App extends MeganekkoApp {
+    private static final int TOTAL_STAGES = 1;
     private Scene topScene;
     private PreStageScene preStage;
-    private FailureScene failureScene;
+    private Scene failureScene, allClearScene;
     private StageScene stageScene;
+    private int stage = 1;
 
     protected App(Meganekko meganekko) {
         super(meganekko);
-//        toTopScene();
-//        toPreStage();
-        toStage();
-//        toFailureScene();
+        toTopScene();
     }
 
     /**
@@ -41,12 +39,14 @@ public class App extends MeganekkoApp {
      * ステージ前の画面へ遷移する
      */
     private void toPreStage() {
+        hideGazeCursor();
         if (preStage == null) {
             setSceneFromXML(R.xml.pre_stage);
             preStage = (PreStageScene) getScene();
         } else {
             setScene(preStage);
         }
+        preStage.setStage(stage);
         recenter();
     }
 
@@ -65,10 +65,28 @@ public class App extends MeganekkoApp {
         recenter();
     }
 
+    /**
+     * 全部クリアしたシーンへ遷移する
+     */
+    private void toAllClearScene() {
+        showGazeCursor();
+        if (allClearScene == null) {
+            setSceneFromXML(R.xml.all_clear);
+            allClearScene = getScene();
+        } else {
+            setScene(allClearScene);
+        }
+        recenter();
+    }
+
+    /**
+     * ゲームオーバーシーンへ遷移する
+     */
     private void toFailureScene() {
+        showGazeCursor();
         if (failureScene == null) {
             setSceneFromXML(R.xml.failure);
-            failureScene = (FailureScene) getScene();
+            failureScene = getScene();
         } else {
             setScene(failureScene);
         }
@@ -80,12 +98,11 @@ public class App extends MeganekkoApp {
      */
     public void onStartButtonPressed() {
         hideGazeCursor();
+        stage = 1; // 最初のステージ
         topScene.animate()
                 .opacity(0)
-                .duration(1000)
-                .onEnd(() -> {
-                    toPreStage();
-                })
+                .duration(getContext().getResources().getInteger(R.integer.scene_transition_fade_out_time))
+                .onEnd(() -> toPreStage())
                 .start(this);
     }
 
@@ -97,16 +114,35 @@ public class App extends MeganekkoApp {
     }
 
     /**
+     * 全部見つけ終わってクリアが表示されたとき。
+     */
+    public void onClearStage() {
+        runOnGlThread(() -> {
+            stageScene.animate()
+                    .opacity(0)
+                    .duration(getContext().getResources().getInteger(R.integer.scene_transition_fade_out_time))
+                    .onEnd(() -> {
+
+                        // 全ステージクリアしていたら全クリアのシーンへ
+                        // そうでなければ次のステージへ
+                        if (++stage >= TOTAL_STAGES) {
+                            toAllClearScene();
+                        } else {
+                            toPreStage();
+                        }
+
+                        deleteStageScene();
+                    })
+                    .start(this);
+        }, 3000);
+    }
+
+    /**
      * ステージで残り時間が0になった時
      */
     public void onFailed() {
         toFailureScene();
-
-        // ステージシーンのリソースを開放する
-        if (stageScene != null) {
-            delete(stageScene);
-            stageScene = null;
-        }
+        deleteStageScene();
     }
 
     private void showGazeCursor() {
@@ -115,5 +151,16 @@ public class App extends MeganekkoApp {
 
     private void hideGazeCursor() {
         ((MeganekkoActivity) getContext()).hideGazeCursor();
+    }
+
+
+    /**
+     * ステージシーンのリソースを開放する
+     */
+    private void deleteStageScene() {
+        if (stageScene != null) {
+            delete(stageScene);
+            stageScene = null;
+        }
     }
 }

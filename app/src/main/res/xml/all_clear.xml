@@ -1,10 +1,11 @@
 <scene class="com.niusounds.hazurevr.scene.FailureScene">
 
     <object
-        height="4.93"
-        texture="@drawable/failure"
-        width="5.12"
-        z="-6.0"/>
+        height="5.12"
+        texture="@drawable/all_clear"
+        width="4.93"
+        y="0.5"
+        z="-6.0" />
 
     <object
         id="@+id/to_title"

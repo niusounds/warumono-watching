@@ -1,0 +1,3 @@
+<resources>
+    <integer name="scene_transition_fade_out_time">1000</integer>
+</resources>

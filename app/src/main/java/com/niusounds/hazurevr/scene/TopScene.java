@@ -31,10 +31,10 @@ public class TopScene extends Scene {
         startButtonView.setPressed(lookingAt);
 
         // スタートボタンを見ている時にシングルタップをしたら、ゲーム開始
-        if (lookingAt) {
-            if (JoyButton.contains(frame.getButtonState(), JoyButton.BUTTON_TOUCH_SINGLE)) {
-                ((App) getApp()).onStartButtonPressed();
-            }
+        if (lookingAt
+                && JoyButton.contains(frame.getButtonState(), JoyButton.BUTTON_TOUCH_SINGLE)) {
+            App app = (App) getApp();
+            app.runOnGlThread(app::onStartButtonPressed);
         }
         super.update(frame);
     }
