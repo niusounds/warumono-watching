@@ -6,7 +6,6 @@ import com.eje_c.meganekko.Frame;
 import com.eje_c.meganekko.MeganekkoApp;
 import com.eje_c.meganekko.Scene;
 import com.eje_c.meganekko.SceneObject;
-import com.eje_c.meganekko.Texture;
 import com.niusounds.hazurevr.App;
 import com.niusounds.hazurevr.R;
 
@@ -20,7 +19,7 @@ public class TopScene extends Scene {
     protected void initialize(MeganekkoApp app) {
         super.initialize(app);
         startButton = findObjectById(R.id.top_start_button);
-        startButtonView = ((Texture.ViewRenderer) startButton.material().texture().getRenderer()).getView();
+        startButtonView = startButton.view();
     }
 
     @Override
