@@ -62,7 +62,6 @@ public class App extends MeganekkoApp {
         } else {
             setScene(stageScene);
         }
-        recenter();
     }
 
     /**
