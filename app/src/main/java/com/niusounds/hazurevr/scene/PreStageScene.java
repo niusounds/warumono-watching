@@ -5,6 +5,7 @@ import android.support.v4.content.ContextCompat;
 import android.view.animation.AnticipateInterpolator;
 
 import com.eje_c.meganekko.Frame;
+import com.eje_c.meganekko.Material;
 import com.eje_c.meganekko.MeganekkoApp;
 import com.eje_c.meganekko.Scene;
 import com.eje_c.meganekko.SceneObject;
@@ -78,7 +79,12 @@ public class PreStageScene extends Scene {
     private void applyStageNumber() {
 
         Context context = getApp().getContext();
-        Texture texture = stageNum.material().texture();
+        Material material = stageNum.material();
+        if (material == null) {
+            material = new Material();
+            stageNum.material(material);
+        }
+        Texture texture = material.texture();
 
         switch (stage) {
             case 1:

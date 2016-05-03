@@ -6,7 +6,6 @@ import com.eje_c.meganekko.Frame;
 import com.eje_c.meganekko.MeganekkoApp;
 import com.eje_c.meganekko.Scene;
 import com.eje_c.meganekko.SceneObject;
-import com.eje_c.meganekko.Texture;
 import com.niusounds.hazurevr.App;
 import com.niusounds.hazurevr.R;
 
@@ -22,7 +21,7 @@ public class FailureScene extends Scene {
     protected void initialize(MeganekkoApp app) {
         super.initialize(app);
         button = findObjectById(R.id.to_title);
-        buttonView = ((Texture.ViewRenderer) button.material().texture().getRenderer()).getView();
+        buttonView = button.view();
     }
 
     @Override
