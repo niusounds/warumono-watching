@@ -56,25 +56,8 @@ public class App extends MeganekkoApp {
     private void toStage() {
         showGazeCursor();
         if (stageScene == null) {
-            switch (stage) {
-                case 1:
-                    setSceneFromXML(R.xml.stage1);
-                    break;
-                case 2:
-                    setSceneFromXML(R.xml.stage2);
-                    break;
-                case 3:
-                    setSceneFromXML(R.xml.stage3);
-                    break;
-                case 4:
-                    setSceneFromXML(R.xml.stage4);
-                    break;
-                case 5:
-                    setSceneFromXML(R.xml.stage5);
-                    break;
-                default:
-                    return;
-            }
+            int stageRes = ResourceID.stageXML(stage);
+            setSceneFromXML(stageRes);
             stageScene = (StageScene) getScene();
         } else {
             setScene(stageScene);
@@ -139,9 +122,11 @@ public class App extends MeganekkoApp {
                     .duration(getContext().getResources().getInteger(R.integer.scene_transition_fade_out_time))
                     .onEnd(() -> {
 
+                        ++stage;
+
                         // 全ステージクリアしていたら全クリアのシーンへ
                         // そうでなければ次のステージへ
-                        if (++stage >= TOTAL_STAGES) {
+                        if (stage > TOTAL_STAGES) {
                             toAllClearScene();
                         } else {
                             toPreStage();

@@ -9,9 +9,9 @@ import com.eje_c.meganekko.Material;
 import com.eje_c.meganekko.MeganekkoApp;
 import com.eje_c.meganekko.Scene;
 import com.eje_c.meganekko.SceneObject;
-import com.eje_c.meganekko.Texture;
 import com.niusounds.hazurevr.App;
 import com.niusounds.hazurevr.R;
+import com.niusounds.hazurevr.ResourceID;
 
 public class PreStageScene extends Scene {
     private SceneObject stageNum, ready, go;
@@ -84,24 +84,8 @@ public class PreStageScene extends Scene {
             material = new Material();
             stageNum.material(material);
         }
-        Texture texture = material.texture();
 
-        switch (stage) {
-            case 1:
-                texture.set(ContextCompat.getDrawable(context, R.drawable.stage1));
-                break;
-            case 2:
-                texture.set(ContextCompat.getDrawable(context, R.drawable.stage2));
-                break;
-            case 3:
-                texture.set(ContextCompat.getDrawable(context, R.drawable.stage3));
-                break;
-            case 4:
-                texture.set(ContextCompat.getDrawable(context, R.drawable.stage4));
-                break;
-            case 5:
-                texture.set(ContextCompat.getDrawable(context, R.drawable.stage5));
-                break;
-        }
+        int drawable = ResourceID.stageNumDrawable(stage);
+        material.texture().set(ContextCompat.getDrawable(context, drawable));
     }
 }

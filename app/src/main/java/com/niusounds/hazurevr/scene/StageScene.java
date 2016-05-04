@@ -10,6 +10,7 @@ import com.eje_c.meganekko.utility.Log;
 import com.niusounds.hazurevr.App;
 import com.niusounds.hazurevr.BuildConfig;
 import com.niusounds.hazurevr.R;
+import com.niusounds.hazurevr.ResourceID;
 
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
@@ -62,7 +63,7 @@ public class StageScene extends Scene {
             }
 
             if (restTime <= 10) {
-                countDown();
+                showAndFadeOutCount(ResourceID.countId(restTime));
             }
 
         }, 1, 1, TimeUnit.SECONDS);
@@ -74,44 +75,6 @@ public class StageScene extends Scene {
     private void onCountZero() {
         App app = (App) getApp();
         app.runOnGlThread(app::onFailed);
-    }
-
-    /**
-     * 10～1までのカウントダウンを表示する
-     */
-    private void countDown() {
-        switch (restTime) {
-            case 10:
-                showAndFadeOutCount(R.id.count_10);
-                break;
-            case 9:
-                showAndFadeOutCount(R.id.count_9);
-                break;
-            case 8:
-                showAndFadeOutCount(R.id.count_8);
-                break;
-            case 7:
-                showAndFadeOutCount(R.id.count_7);
-                break;
-            case 6:
-                showAndFadeOutCount(R.id.count_6);
-                break;
-            case 5:
-                showAndFadeOutCount(R.id.count_5);
-                break;
-            case 4:
-                showAndFadeOutCount(R.id.count_4);
-                break;
-            case 3:
-                showAndFadeOutCount(R.id.count_3);
-                break;
-            case 2:
-                showAndFadeOutCount(R.id.count_2);
-                break;
-            case 1:
-                showAndFadeOutCount(R.id.count_1);
-                break;
-        }
     }
 
     /**
