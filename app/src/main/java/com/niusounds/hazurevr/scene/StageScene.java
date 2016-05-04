@@ -178,7 +178,7 @@ public class StageScene extends Scene {
                 }
 
                 // シングルタップするか1秒以上見つめたら見つけたことにする
-                if (JoyButton.contains(frame.getButtonPressed(), JoyButton.BUTTON_TOUCH_SINGLE)
+                if (JoyButton.contains(frame.getButtonPressed(), JoyButton.BUTTON_TOUCH)
                         || time - lookStartTime > 1) {
                     character.setVisible(false);
                     checkClear();
