@@ -5,7 +5,7 @@
         <object
             height="2.56"
             id="@+id/character_saiaku1"
-            position="-2 2 -9"
+            position="2.629749 -0.546112 9.424785"
             renderingOrder="3000"
             scale="0.6 0.6 1"
             texture="@drawable/character_saiaku1"
@@ -14,16 +14,16 @@
         <object
             height="2.56"
             id="@+id/character_saiaku2"
-            position="0 2 -9"
+            position="9.789817 -0.420880 0.150614"
             renderingOrder="3000"
-            scale="0.6 0.6 1"
+            scale="0.7 0.7 1"
             texture="@drawable/character_saiaku2"
             width="0.99" />
 
         <object
             height="2.56"
             id="@+id/character_saiaku3"
-            position="2 2 -9"
+            position="6.454617 1.299087 7.258823"
             renderingOrder="3000"
             scale="0.6 0.6 1"
             texture="@drawable/character_saiaku3"
@@ -32,7 +32,7 @@
         <object
             height="2.56"
             id="@+id/character_omake1"
-            position="-2 0 -9"
+            position="3.388875 2.786554 -8.763029"
             renderingOrder="3000"
             scale="0.4 0.4 1"
             texture="@drawable/character_omake1"
@@ -41,7 +41,7 @@
         <object
             height="2.56"
             id="@+id/character_omake2"
-            position="0 0 -9"
+            position="4.670014 6.319254 -5.856457"
             renderingOrder="3000"
             scale="0.6 0.6 1"
             texture="@drawable/character_omake2"
@@ -50,34 +50,36 @@
         <object
             height="2.56"
             id="@+id/character_omake3"
-            position="2 0 -9"
+            position="5.711982 4.242204 -6.739220"
             renderingOrder="3000"
-            scale="0.6 0.6 1"
+            scale="0.65 0.65 1"
             texture="@drawable/character_omake3"
             width="0.71" />
 
         <object
             height="2.56"
             id="@+id/character_dr1"
-            position="-2 -2 -9"
+            position="0.616748 9.193672 -3.337090"
             renderingOrder="3000"
+            scale="0.5 0.5 1"
             texture="@drawable/character_dr1"
             width="0.85" />
 
         <object
             height="2.56"
             id="@+id/character_dr2"
-            position="0 -2 -9"
+            position="-7.245614 -1.363923 -6.456072"
             renderingOrder="3000"
+            scale="0.5 0.5 1"
             texture="@drawable/character_dr2"
             width="1.86" />
 
         <object
             height="2.56"
             id="@+id/character_dr3"
-            position="2 -2 -9"
+            position="-5.538630 -0.981769 -8.024946"
             renderingOrder="3000"
-            scale="0.7 0.7 1"
+            scale="0.5 0.5 1"
             texture="@drawable/character_dr3"
             width="0.92" />
 
@@ -171,7 +173,7 @@
 
     <sphere
         renderingOrder="1000"
-        rotation="-140 0 1 0"
+        rotation="90 0 1 0"
         scale="10 10 -10"
         texture="@drawable/stage2_background" />
 
