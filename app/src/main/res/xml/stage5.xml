@@ -1,11 +1,12 @@
-<scene class="com.niusounds.hazurevr.scene.StageScene">
+<scene class="com.niusounds.hazurevr.scene.Stage5Scene">
 
     <object id="@+id/characters">
 
         <object
             height="2.56"
             id="@+id/character_saiaku1"
-            position="-2 2 -9"
+            opacity="0.8"
+            position="-8.360641 3.702598 3.525555"
             renderingOrder="3000"
             scale="0.6 0.6 1"
             texture="@drawable/character_saiaku1"
@@ -14,7 +15,8 @@
         <object
             height="2.56"
             id="@+id/character_saiaku2"
-            position="0 2 -9"
+            opacity="0.8"
+            position="-8.166169 -1.076369 5.309822"
             renderingOrder="3000"
             scale="0.6 0.6 1"
             texture="@drawable/character_saiaku2"
@@ -23,34 +25,35 @@
         <object
             height="2.56"
             id="@+id/character_saiaku3"
-            position="2 2 -9"
+            opacity="0.8"
+            position="0.392122 -0.562658 9.776059"
             renderingOrder="3000"
-            scale="0.6 0.6 1"
+            scale="0.4 0.4 1"
             texture="@drawable/character_saiaku3"
             width="1.22" />
 
         <object
             height="2.56"
             id="@+id/character_omake1"
-            position="-2 0 -9"
+            position="0.867832 -9.703387 -1.063144"
             renderingOrder="3000"
-            scale="0.4 0.4 1"
+            scale="1.3 1.3 1"
             texture="@drawable/character_omake1"
             width="0.9" />
 
         <object
             height="2.56"
             id="@+id/character_omake2"
-            position="0 0 -9"
+            position="7.098612 -2.365164 6.329130"
             renderingOrder="3000"
-            scale="0.6 0.6 1"
+            scale="0.4 0.4 1"
             texture="@drawable/character_omake2"
             width="0.95" />
 
         <object
             height="2.56"
             id="@+id/character_omake3"
-            position="2 0 -9"
+            position="8.233640 3.479385 4.017440"
             renderingOrder="3000"
             scale="0.6 0.6 1"
             texture="@drawable/character_omake3"
@@ -59,25 +62,30 @@
         <object
             height="2.56"
             id="@+id/character_dr1"
-            position="-2 -2 -9"
+            opacity="0.7"
+            position="-9.061949 -0.086530 -3.730083"
             renderingOrder="3000"
+            scale="0.3 0.3 1"
             texture="@drawable/character_dr1"
             width="0.85" />
 
         <object
             height="2.56"
             id="@+id/character_dr2"
-            position="0 -2 -9"
+            opacity="0.7"
+            position="-7.406159 -0.189461 -6.415060"
             renderingOrder="3000"
+            scale="0.3 0.3 1"
             texture="@drawable/character_dr2"
             width="1.86" />
 
         <object
             height="2.56"
             id="@+id/character_dr3"
-            position="2 -2 -9"
+            opacity="0.5"
+            position="1.401810 -0.05 -9.699025"
             renderingOrder="3000"
-            scale="0.7 0.7 1"
+            scale="0.4 0.4 1"
             texture="@drawable/character_dr3"
             width="0.92" />
 
@@ -171,7 +179,7 @@
 
     <sphere
         renderingOrder="1000"
-        rotation="-140 0 1 0"
+        rotation="-50 0 1 0"
         scale="10 10 -10"
         texture="@drawable/stage5_background" />
 

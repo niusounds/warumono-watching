@@ -274,7 +274,7 @@ public class StageScene extends Scene {
      *
      * @param object
      */
-    private void lookToPlayer(SceneObject object) {
+    void lookToPlayer(SceneObject object) {
         Vector3f pos = object.position();
         float y = (float) (Math.atan2(pos.x, pos.z) + Math.PI);
         float x = (float) (Math.atan2(pos.y, Math.hypot(pos.x, pos.z)));
