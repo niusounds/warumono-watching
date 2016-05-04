@@ -41,7 +41,10 @@ public class StageScene extends Scene {
         characters = findObjectById(R.id.characters).getChildren();
         countContainer = findObjectById(R.id.count_container);
 
-        randomChooseCharacter();
+        // 製品版では3体のみ表示
+        if (!BuildConfig.DEBUG) {
+            randomChooseCharacter();
+        }
 
         // 全てのキャラクターをカメラの方に向ける
         for (SceneObject character : characters) {
@@ -185,18 +188,20 @@ public class StageScene extends Scene {
     public void update(Frame frame) {
 
         // 掴んで移動(開発中のみ)
-        if (BuildConfig.DEBUG && JoyButton.contains(frame.getButtonState(), JoyButton.BUTTON_TOUCH)) {
-            SceneObject currentSeeing = getLookingCharacter();
+        if (BuildConfig.DEBUG) {
+            if (JoyButton.contains(frame.getButtonState(), JoyButton.BUTTON_TOUCH)) {
+                SceneObject currentSeeing = getLookingCharacter();
 
-            if (currentSeeing != null) {
-                Vector3f vec = new Vector3f(0, 0, -9.8f);
-                getViewOrientation().transform(vec);
-                currentSeeing.position(vec);
-                lookToPlayer(currentSeeing);
-                Log.d(TAG, "Position: %f %f %f", vec.x, vec.y, vec.z);
+                if (currentSeeing != null) {
+                    Vector3f vec = new Vector3f(0, 0, -9.8f);
+                    getViewOrientation().transform(vec);
+                    currentSeeing.position(vec);
+                    lookToPlayer(currentSeeing);
+                    Log.d(TAG, "Position: %f %f %f", vec.x, vec.y, vec.z);
+                }
+
+                seeingCharacter = currentSeeing;
             }
-
-            seeingCharacter = currentSeeing;
         } else {
 
             SceneObject character = getLookingCharacter();

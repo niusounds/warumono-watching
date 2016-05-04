@@ -8,7 +8,7 @@ import com.niusounds.hazurevr.scene.PreStageScene;
 import com.niusounds.hazurevr.scene.StageScene;
 
 public class App extends MeganekkoApp {
-    private static final int TOTAL_STAGES = 1;
+    private static final int TOTAL_STAGES = 5;
     private Scene topScene;
     private PreStageScene preStage;
     private Scene failureScene, allClearScene;
@@ -56,8 +56,25 @@ public class App extends MeganekkoApp {
     private void toStage() {
         showGazeCursor();
         if (stageScene == null) {
-            // TODO レベルごとに異なるシーンを読み込む
-            setSceneFromXML(R.xml.stage1);
+            switch (stage) {
+                case 1:
+                    setSceneFromXML(R.xml.stage1);
+                    break;
+                case 2:
+                    setSceneFromXML(R.xml.stage2);
+                    break;
+                case 3:
+                    setSceneFromXML(R.xml.stage3);
+                    break;
+                case 4:
+                    setSceneFromXML(R.xml.stage4);
+                    break;
+                case 5:
+                    setSceneFromXML(R.xml.stage5);
+                    break;
+                default:
+                    return;
+            }
             stageScene = (StageScene) getScene();
         } else {
             setScene(stageScene);
