@@ -13,6 +13,7 @@ public class AudioEngine {
 
     public static void init(Context context) {
         audioEngine = new CardboardAudioEngine(context.getApplicationContext(), CardboardAudioEngine.RenderingMode.BINAURAL_HIGH_QUALITY);
+        audioEngine.preloadSoundFile("count.ogg");
         audioEngine.preloadSoundFile("found_dr1.ogg");
         audioEngine.preloadSoundFile("found_dr2.ogg");
         audioEngine.preloadSoundFile("found_dr3.ogg");

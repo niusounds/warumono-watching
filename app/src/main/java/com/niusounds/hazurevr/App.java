@@ -104,6 +104,7 @@ public class App extends MeganekkoApp {
      * トップ画面のスタートボタンが押された時
      */
     public void onStartButtonPressed() {
+        AudioEngine.play("count.ogg", 0, 0, 0);
         hideGazeCursor();
         stage = 1; // 最初のステージ
         topScene.animate()

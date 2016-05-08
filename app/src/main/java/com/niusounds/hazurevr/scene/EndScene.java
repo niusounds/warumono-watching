@@ -7,6 +7,7 @@ import com.eje_c.meganekko.MeganekkoApp;
 import com.eje_c.meganekko.Scene;
 import com.eje_c.meganekko.SceneObject;
 import com.niusounds.hazurevr.App;
+import com.niusounds.hazurevr.AudioEngine;
 import com.niusounds.hazurevr.R;
 
 import ovr.JoyButton;
@@ -39,6 +40,7 @@ public class EndScene extends Scene {
     }
 
     private void returnToTitle() {
+        AudioEngine.play("count.ogg", 0, 0, 0);
         App app = (App) getApp();
         app.runOnGlThread(app::toTopScene);
     }

@@ -95,6 +95,7 @@ public class StageScene extends Scene {
     private void showAndFadeOutCount(int id) {
         getApp().runOnGlThread(() -> {
             recenterCount();
+            AudioEngine.play("count.ogg", 0, 0, 0);
 
             final SceneObject obj = findObjectById(id);
             obj.setVisible(true);
