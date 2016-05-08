@@ -13,10 +13,15 @@ public class AudioEngine {
 
     public static void init(Context context) {
         audioEngine = new CardboardAudioEngine(context.getApplicationContext(), CardboardAudioEngine.RenderingMode.BINAURAL_HIGH_QUALITY);
+        audioEngine.preloadSoundFile("found_dr1.ogg");
+        audioEngine.preloadSoundFile("found_dr2.ogg");
+        audioEngine.preloadSoundFile("found_dr3.ogg");
         audioEngine.preloadSoundFile("found_omake1.ogg");
         audioEngine.preloadSoundFile("found_omake2.ogg");
+        audioEngine.preloadSoundFile("found_omake3.ogg");
         audioEngine.preloadSoundFile("found_saiaku1.ogg");
         audioEngine.preloadSoundFile("found_saiaku2.ogg");
+        audioEngine.preloadSoundFile("found_saiaku3.ogg");
         audioEngine.preloadSoundFile("zannendeshita.ogg");
     }
 

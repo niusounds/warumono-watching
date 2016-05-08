@@ -8,6 +8,7 @@ import com.eje_c.meganekko.Scene;
 import com.eje_c.meganekko.SceneObject;
 import com.eje_c.meganekko.utility.Log;
 import com.niusounds.hazurevr.App;
+import com.niusounds.hazurevr.AudioEngine;
 import com.niusounds.hazurevr.BuildConfig;
 import com.niusounds.hazurevr.R;
 import com.niusounds.hazurevr.ResourceID;
@@ -180,8 +181,7 @@ public class StageScene extends Scene {
                 // シングルタップするか1秒以上見つめたら見つけたことにする
                 if (JoyButton.contains(frame.getButtonPressed(), JoyButton.BUTTON_TOUCH)
                         || time - lookStartTime > 1) {
-                    character.setVisible(false);
-                    checkClear();
+                    onFoundCharacter(character);
                 }
             }
 
@@ -189,6 +189,44 @@ public class StageScene extends Scene {
         }
 
         super.update(frame);
+    }
+
+    private void onFoundCharacter(SceneObject character) {
+
+        // キャラクターの効果音を鳴らす
+        Vector3f pos = character.position();
+        switch (character.getId()) {
+            case R.id.character_omake1:
+                AudioEngine.play("found_omake1.ogg", pos.x, pos.y, pos.z);
+                break;
+            case R.id.character_omake2:
+                AudioEngine.play("found_omake2.ogg", pos.x, pos.y, pos.z);
+                break;
+            case R.id.character_omake3:
+                AudioEngine.play("found_omake3.ogg", pos.x, pos.y, pos.z);
+                break;
+            case R.id.character_saiaku1:
+                AudioEngine.play("found_saiaku1.ogg", pos.x, pos.y, pos.z);
+                break;
+            case R.id.character_saiaku2:
+                AudioEngine.play("found_saiaku2.ogg", pos.x, pos.y, pos.z);
+                break;
+            case R.id.character_saiaku3:
+                AudioEngine.play("found_saiaku3.ogg", pos.x, pos.y, pos.z);
+                break;
+            case R.id.character_dr1:
+                AudioEngine.play("found_dr1.ogg", pos.x, pos.y, pos.z);
+                break;
+            case R.id.character_dr2:
+                AudioEngine.play("found_dr2.ogg", pos.x, pos.y, pos.z);
+                break;
+            case R.id.character_dr3:
+                AudioEngine.play("found_dr3.ogg", pos.x, pos.y, pos.z);
+                break;
+        }
+
+        character.setVisible(false);
+        checkClear();
     }
 
     /**
