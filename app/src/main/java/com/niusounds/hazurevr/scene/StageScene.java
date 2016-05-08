@@ -24,6 +24,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import ovr.JoyButton;
+import ovr.KeyCode;
 
 public class StageScene extends Scene {
     private static final String TAG = StageScene.class.getName();
@@ -243,16 +244,21 @@ public class StageScene extends Scene {
      */
     private void checkClear() {
         if (allCharactersFound()) {
-            // クリア表示
-            recenterCount();
-            findObjectById(R.id.clear).setVisible(true);
+            onClear();
 
-            cancelRestTimeCount();
-
-            // イベント通知
-            App app = (App) getApp();
-            app.runOnGlThread(app::onClearStage);
         }
+    }
+
+    private void onClear() {
+        // クリア表示
+        recenterCount();
+        findObjectById(R.id.clear).setVisible(true);
+
+        cancelRestTimeCount();
+
+        // イベント通知
+        App app = (App) getApp();
+        app.runOnGlThread(app::onClearStage);
     }
 
     /**
@@ -295,5 +301,14 @@ public class StageScene extends Scene {
         float x = (float) (Math.atan2(pos.y, Math.hypot(pos.x, pos.z)));
         Quaternionf rotation = new Quaternionf().rotationYXZ(y, x, 0);
         object.rotation(rotation);
+    }
+
+    @Override
+    public boolean onKeyLongPress(int keyCode, int repeatCount) {
+        if (BuildConfig.DEBUG && keyCode == KeyCode.OVR_KEY_BACK) {
+            onClear();
+            return true;
+        }
+        return super.onKeyLongPress(keyCode, repeatCount);
     }
 }
