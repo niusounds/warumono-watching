@@ -36,7 +36,6 @@ public class StageScene extends Scene {
     private ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor(); // 残り時間を表示するための1秒毎のタスクを管理する
     private Future<?> scheduledFuture;                                                               // 残り時間を表示するタスクをキャンセルするためのFuture
     private SceneObject countContainer;
-    private int bgmSoundId;
 
     @Override
     public void onResume() {
@@ -70,13 +69,13 @@ public class StageScene extends Scene {
 
         }, 1, 1, TimeUnit.SECONDS);
 
-        bgmSoundId = AudioEngine.ambisonic("stage_bgm.ogg");
+        AudioEngine.bgm("stage_bgm.ogg");
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        AudioEngine.stop(bgmSoundId);
+        AudioEngine.stopBgm("stage_bgm.ogg");
     }
 
     /**

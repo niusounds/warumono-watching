@@ -15,7 +15,6 @@ import ovr.JoyButton;
 public class TopScene extends Scene {
     private SceneObject startButton;
     private View startButtonView;
-    private int soundId;
 
     @Override
     protected void initialize(MeganekkoApp app) {
@@ -27,13 +26,13 @@ public class TopScene extends Scene {
     @Override
     public void onResume() {
         super.onResume();
-        soundId = AudioEngine.ambisonic("hazure.ogg");
+        AudioEngine.bgm("hazure.ogg");
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        AudioEngine.stop(soundId);
+        AudioEngine.stopBgm("hazure.ogg");
     }
 
     @Override
