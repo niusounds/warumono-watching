@@ -6,7 +6,7 @@ import com.niusounds.hazurevr.R;
 
 import org.joml.Vector3f;
 
-public class Stage5Scene extends StageScene {
+public class Stage4Scene extends StageScene {
     private SceneObject omake1, omake2, omake3;
     private float time = 0;
     private Vector3f[] positions = new Vector3f[]{
