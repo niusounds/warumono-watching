@@ -1,6 +1,8 @@
 package com.niusounds.hazurevr;
 
 import android.content.Context;
+import android.content.res.AssetFileDescriptor;
+import android.media.MediaPlayer;
 
 import com.eje_c.meganekko.MeganekkoApp;
 import com.eje_c.meganekko.Scene;
@@ -8,8 +10,13 @@ import com.google.vrtoolkit.cardboard.audio.CardboardAudioEngine;
 
 import org.joml.Quaternionf;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 public class AudioEngine {
     private static CardboardAudioEngine audioEngine;
+    private static Map<String, MediaPlayer> mediaPlayerMap = new HashMap<>();
 
     public static void init(Context context) {
         audioEngine = new CardboardAudioEngine(context.getApplicationContext(), CardboardAudioEngine.RenderingMode.BINAURAL_HIGH_QUALITY);
@@ -24,6 +31,28 @@ public class AudioEngine {
         audioEngine.preloadSoundFile("found_saiaku2.ogg");
         audioEngine.preloadSoundFile("found_saiaku3.ogg");
         audioEngine.preloadSoundFile("zannendeshita.ogg");
+        try {
+            preloadMediaPlayer(context, "hazure.ogg");
+            preloadMediaPlayer(context, "stage_bgm.ogg");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void release() {
+        for (MediaPlayer mp : mediaPlayerMap.values()) {
+            mp.release();
+        }
+        mediaPlayerMap.clear();
+    }
+
+    private static void preloadMediaPlayer(Context context, String filename) throws IOException {
+        AssetFileDescriptor fd = context.getAssets().openFd(filename);
+        MediaPlayer mediaPlayer = new MediaPlayer();
+        mediaPlayer.setDataSource(fd.getFileDescriptor(), fd.getStartOffset(), fd.getLength());
+        mediaPlayer.prepare();
+        mediaPlayer.setLooping(true);
+        mediaPlayerMap.put(filename, mediaPlayer);
     }
 
     public static void update(MeganekkoApp app) {
@@ -54,5 +83,20 @@ public class AudioEngine {
             audioEngine.playSound(soundId, true);
         }
         return soundId;
+    }
+
+    public static void bgm(String filename) {
+        MediaPlayer mediaPlayer = mediaPlayerMap.get(filename);
+        if (mediaPlayer != null) {
+            mediaPlayer.start();
+        }
+    }
+
+    public static void stopBgm(String filename) {
+        MediaPlayer mediaPlayer = mediaPlayerMap.get(filename);
+        if (mediaPlayer != null) {
+            mediaPlayer.pause();
+            mediaPlayer.seekTo(0);
+        }
     }
 }

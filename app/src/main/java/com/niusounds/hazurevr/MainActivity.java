@@ -9,4 +9,10 @@ public class MainActivity extends MeganekkoActivity {
     public MeganekkoApp createMeganekkoApp(Meganekko meganekko) {
         return new App(meganekko);
     }
+
+    @Override
+    protected void onDestroy() {
+        AudioEngine.release();
+        super.onDestroy();
+    }
 }
