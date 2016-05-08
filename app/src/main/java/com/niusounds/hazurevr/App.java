@@ -1,5 +1,7 @@
 package com.niusounds.hazurevr;
 
+import android.animation.ValueAnimator;
+
 import com.eje_c.meganekko.Meganekko;
 import com.eje_c.meganekko.MeganekkoApp;
 import com.eje_c.meganekko.Scene;
@@ -111,6 +113,8 @@ public class App extends MeganekkoApp {
                 .duration(getContext().getResources().getInteger(R.integer.scene_transition_fade_out_time))
                 .onEnd(() -> toPreStage())
                 .start(this);
+
+        runOnUiThread(() -> AudioEngine.fadeBgmVolume("hazure.ogg", 1000, 1, 0));
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.niusounds.hazurevr;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
@@ -91,6 +92,7 @@ public class AudioEngine {
     public static void bgm(String filename) {
         MediaPlayer mediaPlayer = mediaPlayerMap.get(filename);
         if (mediaPlayer != null) {
+            mediaPlayer.setVolume(1, 1);
             mediaPlayer.start();
         }
     }
@@ -127,6 +129,19 @@ public class AudioEngine {
                 mp.start();
                 pausingBgm = null;
             }
+        }
+    }
+
+    public static void fadeBgmVolume(String filename, long duration, float volumeFrom, float volumeTo) {
+        MediaPlayer mp = mediaPlayerMap.get(filename);
+        if (mp != null && mp.isPlaying()) {
+            ValueAnimator animator = ValueAnimator.ofFloat(volumeFrom, volumeTo);
+            animator.setDuration(duration);
+            animator.addUpdateListener(animation -> {
+                float volume = (float) animation.getAnimatedValue();
+                mp.setVolume(volume, volume);
+            });
+            animator.start();
         }
     }
 }

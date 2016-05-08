@@ -47,7 +47,7 @@ public class PreStageScene extends Scene {
 
                         // はじめ！を表示してからステージスタート
                         go.setVisible(true);
-                        app.runOnGlThread(app::onStartStage, 1000);
+                        app.runOnGlThread(app::onStartStage, 1500);
                     })
                     .start(app);
 
