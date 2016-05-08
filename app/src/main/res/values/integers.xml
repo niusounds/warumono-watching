@@ -1,3 +1,6 @@
 <resources>
     <integer name="scene_transition_fade_out_time">1000</integer>
+    <integer name="init_stage">1</integer>
+    <integer name="time_limit">30</integer>
+    <integer name="total_stages">5</integer>
 </resources>

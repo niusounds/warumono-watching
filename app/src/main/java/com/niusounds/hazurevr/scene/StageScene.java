@@ -4,6 +4,7 @@ import android.support.annotation.Nullable;
 import android.view.animation.AnticipateInterpolator;
 
 import com.eje_c.meganekko.Frame;
+import com.eje_c.meganekko.MeganekkoApp;
 import com.eje_c.meganekko.Scene;
 import com.eje_c.meganekko.SceneObject;
 import com.eje_c.meganekko.utility.Log;
@@ -29,14 +30,19 @@ import ovr.KeyCode;
 public class StageScene extends Scene {
     private static final String TAG = StageScene.class.getName();
     private static final Random RANDOM = new Random();
-    private static final int TIME = 30;   // 制限時間（秒）
     private List<SceneObject> characters; // キャラクター
     private SceneObject seeingCharacter;  // 視線を合わせているキャラクター
     private double lookStartTime;         // キャラクターを見つめ始めた時間
-    private int restTime = TIME;          // 残り時間
+    private int restTime;                 // 残り時間
     private ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor(); // 残り時間を表示するための1秒毎のタスクを管理する
     private Future<?> scheduledFuture;                                                               // 残り時間を表示するタスクをキャンセルするためのFuture
     private SceneObject countContainer;
+
+    @Override
+    protected void initialize(MeganekkoApp app) {
+        super.initialize(app);
+        restTime = app.getContext().getResources().getInteger(R.integer.time_limit);
+    }
 
     @Override
     public void onResume() {

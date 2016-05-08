@@ -8,12 +8,11 @@ import com.niusounds.hazurevr.scene.PreStageScene;
 import com.niusounds.hazurevr.scene.StageScene;
 
 public class App extends MeganekkoApp {
-    private static final int TOTAL_STAGES = 5;
     private Scene topScene;
     private PreStageScene preStage;
     private Scene failureScene, allClearScene;
     private StageScene stageScene;
-    private int stage = 1;
+    private int stage;
 
     protected App(Meganekko meganekko) {
         super(meganekko);
@@ -106,7 +105,7 @@ public class App extends MeganekkoApp {
     public void onStartButtonPressed() {
         AudioEngine.play("count.ogg", 0, 0, 0);
         hideGazeCursor();
-        stage = 1; // 最初のステージ
+        stage = getContext().getResources().getInteger(R.integer.init_stage); // 最初のステージ
         topScene.animate()
                 .opacity(0)
                 .duration(getContext().getResources().getInteger(R.integer.scene_transition_fade_out_time))
@@ -135,7 +134,7 @@ public class App extends MeganekkoApp {
 
                         // 全ステージクリアしていたら全クリアのシーンへ
                         // そうでなければ次のステージへ
-                        if (stage > TOTAL_STAGES) {
+                        if (stage > getContext().getResources().getInteger(R.integer.total_stages)) {
                             toAllClearScene();
                         } else {
                             toPreStage();
