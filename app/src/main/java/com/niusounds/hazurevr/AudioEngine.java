@@ -31,10 +31,12 @@ public class AudioEngine {
         audioEngine.preloadSoundFile("found_saiaku1.ogg");
         audioEngine.preloadSoundFile("found_saiaku2.ogg");
         audioEngine.preloadSoundFile("found_saiaku3.ogg");
+        audioEngine.preloadSoundFile("pre_stage.ogg");
         audioEngine.preloadSoundFile("zannendeshita.ogg");
         try {
-            preloadMediaPlayer(context, "hazure.ogg");
-            preloadMediaPlayer(context, "stage_bgm.ogg");
+            preloadMediaPlayer(context, "hazure.ogg", true);
+            preloadMediaPlayer(context, "stage_bgm.ogg", true);
+            preloadMediaPlayer(context, "pre_stage.ogg", false);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -47,12 +49,12 @@ public class AudioEngine {
         mediaPlayerMap.clear();
     }
 
-    private static void preloadMediaPlayer(Context context, String filename) throws IOException {
+    private static void preloadMediaPlayer(Context context, String filename, boolean looping) throws IOException {
         AssetFileDescriptor fd = context.getAssets().openFd(filename);
         MediaPlayer mediaPlayer = new MediaPlayer();
         mediaPlayer.setDataSource(fd.getFileDescriptor(), fd.getStartOffset(), fd.getLength());
         mediaPlayer.prepare();
-        mediaPlayer.setLooping(true);
+        mediaPlayer.setLooping(looping);
         mediaPlayerMap.put(filename, mediaPlayer);
     }
 

@@ -10,6 +10,7 @@ import com.eje_c.meganekko.MeganekkoApp;
 import com.eje_c.meganekko.Scene;
 import com.eje_c.meganekko.SceneObject;
 import com.niusounds.hazurevr.App;
+import com.niusounds.hazurevr.AudioEngine;
 import com.niusounds.hazurevr.R;
 import com.niusounds.hazurevr.ResourceID;
 
@@ -40,7 +41,7 @@ public class PreStageScene extends Scene {
             ready.setVisible(true);
             ready.animate()
                     .opacity(0)
-                    .duration(1500)
+                    .duration(912)
                     .interpolator(new AnticipateInterpolator(1.0f))
                     .onEnd(() -> {
 
@@ -49,6 +50,9 @@ public class PreStageScene extends Scene {
                         app.runOnGlThread(app::onStartStage, 1000);
                     })
                     .start(app);
+
+            AudioEngine.bgm("pre_stage.ogg");
+
         }, 1000);
     }
 
