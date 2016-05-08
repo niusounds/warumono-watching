@@ -28,7 +28,7 @@ public class AudioEngine {
 
     public static void update(MeganekkoApp app) {
         Scene scene = app.getScene();
-        Quaternionf q = scene.getViewOrientation().rotateY((float) (Math.PI / 2));
+        Quaternionf q = scene.getViewOrientation();
         audioEngine.setHeadRotation(q.x, q.y, q.z, q.w);
         audioEngine.update();
     }
