@@ -7,6 +7,7 @@ import com.eje_c.meganekko.MeganekkoApp;
 import com.eje_c.meganekko.Scene;
 import com.eje_c.meganekko.SceneObject;
 import com.niusounds.hazurevr.App;
+import com.niusounds.hazurevr.AudioEngine;
 import com.niusounds.hazurevr.R;
 
 import ovr.JoyButton;
@@ -14,12 +15,25 @@ import ovr.JoyButton;
 public class TopScene extends Scene {
     private SceneObject startButton;
     private View startButtonView;
+    private int soundId;
 
     @Override
     protected void initialize(MeganekkoApp app) {
         super.initialize(app);
         startButton = findObjectById(R.id.top_start_button);
         startButtonView = startButton.view();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        soundId = AudioEngine.ambisonic("hazure.ogg");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        AudioEngine.stop(soundId);
     }
 
     @Override

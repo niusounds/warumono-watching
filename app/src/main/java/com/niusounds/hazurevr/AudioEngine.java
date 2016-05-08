@@ -27,7 +27,7 @@ public class AudioEngine {
 
     public static void update(MeganekkoApp app) {
         Scene scene = app.getScene();
-        Quaternionf q = scene.getViewOrientation();
+        Quaternionf q = scene.getViewOrientation().rotateY((float) (Math.PI / 2));
         audioEngine.setHeadRotation(q.x, q.y, q.z, q.w);
         audioEngine.update();
     }
@@ -45,5 +45,13 @@ public class AudioEngine {
         if (soundId != CardboardAudioEngine.INVALID_ID && audioEngine.isSoundPlaying(soundId)) {
             audioEngine.stopSound(soundId);
         }
+    }
+
+    public static int ambisonic(String filename) {
+        int soundId = audioEngine.createSoundfield(filename);
+        if (soundId != CardboardAudioEngine.INVALID_ID) {
+            audioEngine.playSound(soundId, true);
+        }
+        return soundId;
     }
 }
