@@ -7,6 +7,7 @@ import com.eje_c.meganekko.MeganekkoApp;
 import com.eje_c.meganekko.Scene;
 import com.eje_c.meganekko.SceneObject;
 import com.niusounds.hazurevr.App;
+import com.niusounds.hazurevr.AudioEngine;
 import com.niusounds.hazurevr.R;
 
 import ovr.JoyButton;
@@ -16,12 +17,25 @@ public class FailureScene extends Scene {
 
     private SceneObject button;
     private View buttonView;
+    private int soundId;
 
     @Override
     protected void initialize(MeganekkoApp app) {
         super.initialize(app);
         button = findObjectById(R.id.to_title);
         buttonView = button.view();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        soundId = AudioEngine.play("zannendeshita.ogg", 0, 0, -3);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        AudioEngine.stop(soundId);
     }
 
     @Override

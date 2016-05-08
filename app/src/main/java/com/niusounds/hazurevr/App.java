@@ -17,7 +17,15 @@ public class App extends MeganekkoApp {
 
     protected App(Meganekko meganekko) {
         super(meganekko);
+        AudioEngine.init(meganekko.getContext());
         toTopScene();
+    }
+
+
+    @Override
+    public void update() {
+        AudioEngine.update(this);
+        super.update();
     }
 
     /**
