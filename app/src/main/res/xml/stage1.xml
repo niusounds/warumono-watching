@@ -5,54 +5,48 @@
         <object
             height="2.56"
             id="@+id/character_saiaku1"
-            position="8.887657 -0.772053 4.292196"
+            position="9.599702 1.902044 -0.518129"
             renderingOrder="3000"
-            scale="0.6 0.6 1"
             texture="@drawable/character_saiaku1"
             width="1.14" />
 
         <object
             height="2.56"
             id="@+id/character_saiaku2"
-            position="2.263743 3.255174 9.071222"
+            position="9.544457 -1.773587 1.341009"
             renderingOrder="3000"
-            scale="0.6 0.6 1"
             texture="@drawable/character_saiaku2"
             width="0.99" />
 
         <object
             height="2.56"
             id="@+id/character_saiaku3"
-            position="8.859234 3.169895 3.078260"
+            position="8.915203 3.237959 2.464829"
             renderingOrder="3000"
-            scale="0.6 0.6 1"
             texture="@drawable/character_saiaku3"
             width="1.22" />
 
         <object
             height="2.56"
             id="@+id/character_omake1"
-            position="-5.913795 -0.189160 -7.937337"
+            position="-9.178415 0.346176 -3.417178"
             renderingOrder="3000"
-            scale="0.4 0.4 1"
             texture="@drawable/character_omake1"
             width="0.9" />
 
         <object
             height="2.56"
             id="@+id/character_omake2"
-            position="-9.891729 -0.149684 -0.376213"
+            position="-8.992657 3.115638 2.337898"
             renderingOrder="3000"
-            scale="0.6 0.6 1"
             texture="@drawable/character_omake2"
             width="0.95" />
 
         <object
             height="2.56"
             id="@+id/character_omake3"
-            position="-9.434588 0.079505 2.998800"
+            position="-9.194344 3.183523 -1.170269"
             renderingOrder="3000"
-            scale="0.6 0.6 1"
             texture="@drawable/character_omake3"
             width="0.71" />
 
@@ -75,9 +69,8 @@
         <object
             height="2.56"
             id="@+id/character_dr3"
-            position="-5.513777 6.136628 5.289660"
+            position="-1.291679 7.217127 6.502693"
             renderingOrder="3000"
-            scale="0.7 0.7 1"
             texture="@drawable/character_dr3"
             width="0.92" />
 
