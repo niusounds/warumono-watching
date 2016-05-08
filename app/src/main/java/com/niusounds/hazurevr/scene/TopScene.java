@@ -12,9 +12,12 @@ import com.niusounds.hazurevr.R;
 
 import ovr.JoyButton;
 
+/**
+ * 最初の画面
+ */
 public class TopScene extends Scene {
-    private SceneObject startButton;
-    private View startButtonView;
+    private SceneObject startButton; // スタートボタンオブジェクト
+    private View startButtonView;    // スタートボタンUI
 
     @Override
     protected void initialize(MeganekkoApp app) {

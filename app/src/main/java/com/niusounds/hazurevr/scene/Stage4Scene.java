@@ -6,6 +6,9 @@ import com.niusounds.hazurevr.R;
 
 import org.joml.Vector3f;
 
+/**
+ * 公園ステージの独自処理
+ */
 public class Stage4Scene extends StageScene {
     private SceneObject omake1, omake2, omake3;
     private float time = 0;
@@ -34,7 +37,6 @@ public class Stage4Scene extends StageScene {
         omake1.setOpacity(opacity);
         omake2.setOpacity(opacity);
         omake3.setOpacity(opacity);
-
 
         // まれにomake2の位置が変わる
         if (omake2.isVisible() && Math.random() < 0.002 && !isLookingAt(omake2)) {

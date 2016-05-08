@@ -1,7 +1,5 @@
 package com.niusounds.hazurevr;
 
-import android.animation.ValueAnimator;
-
 import com.eje_c.meganekko.Meganekko;
 import com.eje_c.meganekko.MeganekkoApp;
 import com.eje_c.meganekko.Scene;

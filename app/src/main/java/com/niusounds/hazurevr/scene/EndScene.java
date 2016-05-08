@@ -11,8 +11,10 @@ import com.niusounds.hazurevr.AudioEngine;
 import com.niusounds.hazurevr.R;
 
 import ovr.JoyButton;
-import ovr.KeyCode;
 
+/**
+ * 成功画面・失敗画面共通
+ */
 public class EndScene extends Scene {
 
     private SceneObject button;
@@ -39,30 +41,12 @@ public class EndScene extends Scene {
         super.update(frame);
     }
 
+    /**
+     * タイトルに戻るボタンを押した時
+     */
     private void returnToTitle() {
         AudioEngine.play("count.ogg", 0, 0, 0);
         App app = (App) getApp();
         app.runOnGlThread(app::toTopScene);
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, int repeatCount) {
-
-        if (keyCode == KeyCode.OVR_KEY_BACK) {
-            return true;
-        }
-
-        return super.onKeyDown(keyCode, repeatCount);
-    }
-
-    @Override
-    public boolean onKeyShortPress(int keyCode, int repeatCount) {
-
-        if (keyCode == KeyCode.OVR_KEY_BACK) {
-            returnToTitle();
-            return true;
-        }
-
-        return super.onKeyShortPress(keyCode, repeatCount);
     }
 }

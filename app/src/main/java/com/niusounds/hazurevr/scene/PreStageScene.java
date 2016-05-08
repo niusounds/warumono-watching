@@ -14,6 +14,9 @@ import com.niusounds.hazurevr.AudioEngine;
 import com.niusounds.hazurevr.R;
 import com.niusounds.hazurevr.ResourceID;
 
+/**
+ * ステージ開始前のシーン
+ */
 public class PreStageScene extends Scene {
     private SceneObject stageNum, ready, go;
     private int stage;

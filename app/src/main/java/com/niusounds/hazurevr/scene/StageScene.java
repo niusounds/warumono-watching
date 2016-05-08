@@ -27,6 +27,9 @@ import java.util.concurrent.TimeUnit;
 import ovr.JoyButton;
 import ovr.KeyCode;
 
+/**
+ * ステージシーン
+ */
 public class StageScene extends Scene {
     private static final String TAG = StageScene.class.getName();
     private static final Random RANDOM = new Random();
@@ -255,6 +258,9 @@ public class StageScene extends Scene {
         }
     }
 
+    /**
+     * クリアした時の処理
+     */
     private void onClear() {
         // クリア表示
         recenterCount();
@@ -311,6 +317,8 @@ public class StageScene extends Scene {
 
     @Override
     public boolean onKeyLongPress(int keyCode, int repeatCount) {
+
+        // デバッグ時のみ、戻る長押しでクリアしたことにする
         if (BuildConfig.DEBUG && keyCode == KeyCode.OVR_KEY_BACK) {
             onClear();
             return true;
