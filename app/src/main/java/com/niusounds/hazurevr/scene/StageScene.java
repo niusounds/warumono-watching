@@ -76,7 +76,7 @@ public class StageScene extends Scene {
 
         }, 1, 1, TimeUnit.SECONDS);
 
-        AudioEngine.bgm("stage_bgm.ogg");
+        AudioEngine.playBgm("stage_bgm.ogg");
     }
 
     @Override

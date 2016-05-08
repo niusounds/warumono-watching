@@ -89,7 +89,7 @@ public class AudioEngine {
         return soundId;
     }
 
-    public static void bgm(String filename) {
+    public static void playBgm(String filename) {
         MediaPlayer mediaPlayer = mediaPlayerMap.get(filename);
         if (mediaPlayer != null) {
             mediaPlayer.setVolume(1, 1);

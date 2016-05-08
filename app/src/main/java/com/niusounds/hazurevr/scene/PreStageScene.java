@@ -51,7 +51,7 @@ public class PreStageScene extends Scene {
                     })
                     .start(app);
 
-            AudioEngine.bgm("pre_stage.ogg");
+            AudioEngine.playBgm("pre_stage.ogg");
 
         }, 1000);
     }

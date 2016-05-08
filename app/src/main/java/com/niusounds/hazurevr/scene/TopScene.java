@@ -26,7 +26,7 @@ public class TopScene extends Scene {
     @Override
     public void onResume() {
         super.onResume();
-        AudioEngine.bgm("hazure.ogg");
+        AudioEngine.playBgm("hazure.ogg");
     }
 
     @Override
