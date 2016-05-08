@@ -1,9 +1,12 @@
 package com.niusounds.hazurevr;
 
 import android.animation.ValueAnimator;
+import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
+import android.os.Bundle;
 
 import com.eje_c.meganekko.MeganekkoApp;
 import com.eje_c.meganekko.Scene;
@@ -12,13 +15,14 @@ import com.google.vrtoolkit.cardboard.audio.CardboardAudioEngine;
 import org.joml.Quaternionf;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class AudioEngine {
     private static CardboardAudioEngine audioEngine;
     private static Map<String, MediaPlayer> mediaPlayerMap = new HashMap<>();
-    private static String pausingBgm;
 
     public static void init(Context context) {
         audioEngine = new CardboardAudioEngine(context.getApplicationContext(), CardboardAudioEngine.RenderingMode.BINAURAL_HIGH_QUALITY);
@@ -41,6 +45,58 @@ public class AudioEngine {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        Application application = (Application) context.getApplicationContext();
+        application.registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
+            List<String> playingBgmWhenPause = new ArrayList<>();
+
+            @Override
+            public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+            }
+
+            @Override
+            public void onActivityStarted(Activity activity) {
+            }
+
+            @Override
+            public void onActivityResumed(Activity activity) {
+                audioEngine.resume();
+
+                // onPauseで一時停止したBGMを再開
+                for (String filename : playingBgmWhenPause) {
+                    playBgm(filename);
+                }
+                playingBgmWhenPause.clear();
+            }
+
+            @Override
+            public void onActivityPaused(Activity activity) {
+                audioEngine.pause();
+
+                // 再生中のBGMを記憶して一時停止
+                playingBgmWhenPause.clear();
+                for (Map.Entry<String, MediaPlayer> entry : mediaPlayerMap.entrySet()) {
+                    MediaPlayer mp = entry.getValue();
+                    if (mp.isPlaying()) {
+                        mp.pause();
+                        playingBgmWhenPause.add(entry.getKey());
+                    }
+                }
+            }
+
+            @Override
+            public void onActivityStopped(Activity activity) {
+            }
+
+            @Override
+            public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+            }
+
+            @Override
+            public void onActivityDestroyed(Activity activity) {
+                release();
+            }
+        });
     }
 
     public static void release() {
@@ -102,33 +158,6 @@ public class AudioEngine {
         if (mediaPlayer != null) {
             mediaPlayer.pause();
             mediaPlayer.seekTo(0);
-        }
-    }
-
-    public static boolean isBgmPlaying() {
-        for (MediaPlayer mp : mediaPlayerMap.values()) {
-            if (mp.isPlaying()) return true;
-        }
-        return false;
-    }
-
-    public static void pauseBgm() {
-        for (Map.Entry<String, MediaPlayer> entry : mediaPlayerMap.entrySet()) {
-            MediaPlayer mp = entry.getValue();
-            if (mp.isPlaying()) {
-                mp.pause();
-                pausingBgm = entry.getKey();
-            }
-        }
-    }
-
-    public static void resumeBgm() {
-        if (pausingBgm != null) {
-            MediaPlayer mp = mediaPlayerMap.get(pausingBgm);
-            if (mp != null) {
-                mp.start();
-                pausingBgm = null;
-            }
         }
     }
 
