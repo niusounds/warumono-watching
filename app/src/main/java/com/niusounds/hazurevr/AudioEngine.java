@@ -17,6 +17,7 @@ import java.util.Map;
 public class AudioEngine {
     private static CardboardAudioEngine audioEngine;
     private static Map<String, MediaPlayer> mediaPlayerMap = new HashMap<>();
+    private static String pausingBgm;
 
     public static void init(Context context) {
         audioEngine = new CardboardAudioEngine(context.getApplicationContext(), CardboardAudioEngine.RenderingMode.BINAURAL_HIGH_QUALITY);
@@ -97,6 +98,33 @@ public class AudioEngine {
         if (mediaPlayer != null) {
             mediaPlayer.pause();
             mediaPlayer.seekTo(0);
+        }
+    }
+
+    public static boolean isBgmPlaying() {
+        for (MediaPlayer mp : mediaPlayerMap.values()) {
+            if (mp.isPlaying()) return true;
+        }
+        return false;
+    }
+
+    public static void pauseBgm() {
+        for (Map.Entry<String, MediaPlayer> entry : mediaPlayerMap.entrySet()) {
+            MediaPlayer mp = entry.getValue();
+            if (mp.isPlaying()) {
+                mp.pause();
+                pausingBgm = entry.getKey();
+            }
+        }
+    }
+
+    public static void resumeBgm() {
+        if (pausingBgm != null) {
+            MediaPlayer mp = mediaPlayerMap.get(pausingBgm);
+            if (mp != null) {
+                mp.start();
+                pausingBgm = null;
+            }
         }
     }
 }
