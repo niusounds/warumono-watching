@@ -203,7 +203,7 @@ public class StageScene extends Scene {
     private void onFoundCharacter(SceneObject character) {
 
         // キャラクターの効果音を鳴らす
-        Vector3f pos = character.position();
+        Vector3f pos = character.position().normalize();
         switch (character.getId()) {
             case R.id.character_omake1:
                 AudioEngine.play("found_omake1.ogg", pos.x, pos.y, pos.z);
