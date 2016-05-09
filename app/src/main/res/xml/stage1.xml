@@ -162,10 +162,10 @@
             z="-6" />
     </object>
 
-    <sphere
+    <globe
         renderingOrder="1000"
-        rotation="-140 0 1 0"
-        scale="10 10 -10"
+        rotation="-50 0 1 0"
+        scale="0.1 0.1 0.1"
         texture="@drawable/stage1_background" />
 
 </scene>

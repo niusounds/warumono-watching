@@ -33,11 +33,11 @@ import ovr.KeyCode;
 public class StageScene extends Scene {
     private static final String TAG = StageScene.class.getName();
     private static final Random RANDOM = new Random();
+    private static final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor(); // 残り時間を表示するための1秒毎のタスクを管理する
     private List<SceneObject> characters; // キャラクター
     private SceneObject seeingCharacter;  // 視線を合わせているキャラクター
     private double lookStartTime;         // キャラクターを見つめ始めた時間
     private int restTime;                 // 残り時間
-    private ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor(); // 残り時間を表示するための1秒毎のタスクを管理する
     private Future<?> scheduledFuture;                                                               // 残り時間を表示するタスクをキャンセルするためのFuture
     private SceneObject countContainer;
 
@@ -86,6 +86,7 @@ public class StageScene extends Scene {
     public void onPause() {
         super.onPause();
         AudioEngine.stopBgm("stage_bgm.ogg");
+        cancelRestTimeCount();
     }
 
     /**
@@ -122,13 +123,6 @@ public class StageScene extends Scene {
         countContainer.rotation(viewOrientation);
     }
 
-    @Override
-    public void delete() {
-        cancelRestTimeCount();
-        shutdownExecutor();
-        super.delete();
-    }
-
     /**
      * 残り時間のカウントダウンを停止する。2回以上呼び出しても何も起こらない。
      */
@@ -136,13 +130,6 @@ public class StageScene extends Scene {
         if (scheduledFuture != null) {
             scheduledFuture.cancel(false);
             scheduledFuture = null;
-        }
-    }
-
-    private void shutdownExecutor() {
-        if (executorService != null) {
-            executorService.shutdown();
-            executorService = null;
         }
     }
 

@@ -5,13 +5,11 @@ import com.eje_c.meganekko.MeganekkoApp;
 import com.eje_c.meganekko.Scene;
 import com.eje_c.meganekko.gearvr.MeganekkoActivity;
 import com.niusounds.hazurevr.scene.PreStageScene;
-import com.niusounds.hazurevr.scene.StageScene;
 
 public class App extends MeganekkoApp {
     private Scene topScene;
     private PreStageScene preStage;
     private Scene failureScene, allClearScene;
-    private StageScene stageScene;
     private int stage;
 
     protected App(Meganekko meganekko) {
@@ -62,13 +60,8 @@ public class App extends MeganekkoApp {
      */
     private void toStage() {
         showGazeCursor();
-        if (stageScene == null) {
-            int stageRes = ResourceID.stageXML(stage);
-            setSceneFromXML(stageRes);
-            stageScene = (StageScene) getScene();
-        } else {
-            setScene(stageScene);
-        }
+        int stageRes = ResourceID.stageXML(stage);
+        setSceneFromXML(stageRes);
     }
 
     /**
@@ -127,7 +120,7 @@ public class App extends MeganekkoApp {
      */
     public void onClearStage() {
         runOnGlThread(() -> {
-            stageScene.animate()
+            getScene().animate()
                     .opacity(0)
                     .duration(getContext().getResources().getInteger(R.integer.scene_transition_fade_out_time))
                     .onEnd(() -> {
@@ -141,8 +134,6 @@ public class App extends MeganekkoApp {
                         } else {
                             toPreStage();
                         }
-
-                        deleteStageScene();
                     })
                     .start(this);
         }, 3000);
@@ -153,7 +144,6 @@ public class App extends MeganekkoApp {
      */
     public void onFailed() {
         toFailureScene();
-        deleteStageScene();
     }
 
     /**
@@ -168,15 +158,5 @@ public class App extends MeganekkoApp {
      */
     private void hideGazeCursor() {
         ((MeganekkoActivity) getContext()).hideGazeCursor();
-    }
-
-    /**
-     * ステージシーンのリソースを開放する
-     */
-    private void deleteStageScene() {
-        if (stageScene != null) {
-            delete(stageScene);
-            stageScene = null;
-        }
     }
 }
