@@ -78,14 +78,11 @@ public class StageScene extends Scene {
             }
 
         }, 1, 1, TimeUnit.SECONDS);
-
-        AudioEngine.playBgm("stage_bgm.ogg");
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        AudioEngine.stopBgm("stage_bgm.ogg");
         cancelRestTimeCount();
     }
 

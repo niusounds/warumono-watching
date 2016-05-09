@@ -1,4 +1,4 @@
-<scene class="com.niusounds.hazurevr.scene.StageScene">
+<scene class="com.niusounds.hazurevr.scene.Stage1Scene">
 
     <object id="@+id/characters">
 

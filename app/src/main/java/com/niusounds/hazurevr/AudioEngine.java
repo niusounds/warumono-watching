@@ -42,6 +42,7 @@ public class AudioEngine {
             preloadMediaPlayer(context, "hazure.ogg", true);
             preloadMediaPlayer(context, "stage_bgm.ogg", true);
             preloadMediaPlayer(context, "pre_stage.ogg", false);
+            preloadMediaPlayer(context, "stage_bgm2.ogg", false);
         } catch (IOException e) {
             e.printStackTrace();
         }

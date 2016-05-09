@@ -2,6 +2,7 @@ package com.niusounds.hazurevr.scene;
 
 import com.eje_c.meganekko.Frame;
 import com.eje_c.meganekko.SceneObject;
+import com.niusounds.hazurevr.AudioEngine;
 import com.niusounds.hazurevr.R;
 
 import org.joml.Vector3f;
@@ -26,6 +27,13 @@ public class Stage4Scene extends StageScene {
         omake1 = findObjectById(R.id.character_omake1);
         omake2 = findObjectById(R.id.character_omake2);
         omake3 = findObjectById(R.id.character_omake3);
+        AudioEngine.playBgm("stage_bgm2.ogg");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        AudioEngine.stopBgm("stage_bgm2.ogg");
     }
 
     @Override
