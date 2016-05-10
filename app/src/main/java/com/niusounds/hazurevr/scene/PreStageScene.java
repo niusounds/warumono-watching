@@ -1,12 +1,13 @@
 package com.niusounds.hazurevr.scene;
 
-import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.view.animation.AnticipateInterpolator;
 
 import com.eje_c.meganekko.Frame;
 import com.eje_c.meganekko.Material;
 import com.eje_c.meganekko.MeganekkoApp;
+import com.eje_c.meganekko.Mesh;
 import com.eje_c.meganekko.Scene;
 import com.eje_c.meganekko.SceneObject;
 import com.niusounds.hazurevr.App;
@@ -85,14 +86,9 @@ public class PreStageScene extends Scene {
      */
     private void applyStageNumber() {
 
-        Context context = getApp().getContext();
-        Material material = stageNum.material();
-        if (material == null) {
-            material = new Material();
-            stageNum.material(material);
-        }
-
-        int drawable = ResourceID.stageNumDrawable(stage);
-        material.texture().set(ContextCompat.getDrawable(context, drawable));
+        int drawableRes = ResourceID.stageNumDrawable(stage);
+        Drawable drawable = ContextCompat.getDrawable(getApp().getContext(), drawableRes);
+        stageNum.material(Material.from(drawable));
+        stageNum.mesh(Mesh.from(drawable));
     }
 }

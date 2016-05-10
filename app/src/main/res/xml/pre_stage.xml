@@ -1,25 +1,19 @@
 <scene class="com.niusounds.hazurevr.scene.PreStageScene">
 
     <object
-        height="0.49"
         id="@+id/pre_stage_stage_num"
-        width="2.56"
         y="1.5"
         z="-7.0" />
 
     <object
-        height="0.65"
         id="@+id/pre_stage_ready"
         texture="@drawable/ready"
-        width="2.56"
         z="-7.0" />
 
     <object
-        height="0.64"
         id="@+id/pre_stage_go"
         texture="@drawable/go"
         visible="false"
-        width="2.56"
         z="-7.0" />
 
 </scene>
