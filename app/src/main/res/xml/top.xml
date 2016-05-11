@@ -69,4 +69,7 @@
         width="2.687"
         y="-5.0" />
 
+    <globe
+        renderingOrder="1"
+        texture="@drawable/background" />
 </scene>
