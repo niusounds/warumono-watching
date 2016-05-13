@@ -182,7 +182,7 @@ public class StageScene extends Scene {
                 }
 
                 // シングルタップするか1秒以上見つめたら見つけたことにする
-                if (JoyButton.contains(frame.getButtonPressed(), JoyButton.BUTTON_TOUCH)
+                if (JoyButton.contains(frame.getButtonPressed(), JoyButton.BUTTON_TOUCH | JoyButton.BUTTON_A | JoyButton.BUTTON_B)
                         || time - lookStartTime > 1) {
                     onFoundCharacter(character);
                 }

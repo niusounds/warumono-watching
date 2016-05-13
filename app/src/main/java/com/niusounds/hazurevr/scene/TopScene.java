@@ -45,12 +45,14 @@ public class TopScene extends Scene {
         boolean lookingAt = isLookingAt(startButton);
         startButtonView.setPressed(lookingAt);
 
-        // スタートボタンを見ている時にシングルタップをしたら、ゲーム開始
-        if (lookingAt
-                && JoyButton.contains(frame.getButtonState(), JoyButton.BUTTON_TOUCH_SINGLE)) {
+        // ジョイパッドのスタートボタンを押すか、スタートボタンを見ている時にシングルタップをしたらゲーム開始
+        int buttonPressed = frame.getButtonPressed();
+        if (JoyButton.contains(buttonPressed, JoyButton.BUTTON_START)
+                || (lookingAt && JoyButton.contains(buttonPressed, JoyButton.BUTTON_TOUCH_SINGLE))) {
             App app = (App) getApp();
             app.runOnGlThread(app::onStartButtonPressed);
         }
+
         super.update(frame);
     }
 }

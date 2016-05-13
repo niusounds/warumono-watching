@@ -33,8 +33,10 @@ public class EndScene extends Scene {
         boolean lookingAt = isLookingAt(button);
         buttonView.setPressed(lookingAt);
 
-        if (lookingAt
-                && JoyButton.contains(frame.getButtonPressed(), JoyButton.BUTTON_TOUCH_SINGLE)) {
+        // ジョイパッドのスタートを押すか、タイトルへ戻るを見ながらタップしたらタイトル画面へ戻る
+        int buttonPressed = frame.getButtonPressed();
+        if (JoyButton.contains(buttonPressed, JoyButton.BUTTON_START)
+                || (lookingAt && JoyButton.contains(buttonPressed, JoyButton.BUTTON_TOUCH_SINGLE))) {
             returnToTitle();
         }
 
